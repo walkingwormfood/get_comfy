@@ -1,78 +1,21 @@
 version: 0.2
 
-run-as: ...
-
 env:
-  shell: ...
   variables:
     AWS_DEFAULT_REGION: "us-east-1"
-    REPOSITORY_URI: "626141768866.dkr.ecr.us-east-1.amazonaws.com/get_comfy"
-    IMAGE_TAG: "get_comfy:latest"
-  parameter-store:
-    key: "value"
-  exported-variables:
-    - ...
-  secrets-manager:
-    key: ...
-  git-credential-helper: no
-
-proxy:
-  upload-artifacts: no
-  logs: no
 
 phases:
   pre_build:
-    run-as: ...
-    on-failure: ABORT
     commands:
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $REPOSITORY_URI
       - echo Build started on `date`
-    finally:
-      - echo Completed pre-build phase
   build:
-    run-as: ...
-    on-failure: ABORT
     commands:
       - echo Building the Docker image...
       - docker build -t $IMAGE_TAG .
       - docker tag $IMAGE_TAG $REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION
-    finally:
-      - echo Completed build phase
   post_build:
-    run-as: ...
-    on-failure: ABORT
     commands:
       - echo Pushing the Docker image...
       - docker push $REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION
-    finally:
-      - echo Completed post-build phase
-
-reports:
-  ...: 
-    files:
-      - ...
-    base-directory: ...
-    discard-paths: no
-    file-format: ...
-
-artifacts:
-  files:
-    - ...
-  name: ...
-  discard-paths: no
-  base-directory: ...
-  exclude-paths: ...
-  enable-symlinks: no
-  s3-prefix: ...
-  secondary-artifacts:
-    ...:
-      files:
-        - ...
-      name: ...
-      discard-paths: no
-      base-directory: ...
-
-cache:
-  paths:
-    - ...
