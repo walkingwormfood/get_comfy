@@ -20,9 +20,8 @@ RUN /opt/ai-dock/bin/build/layer0/init.sh
 ENV MAMBA_DEFAULT_ENV=comfyui
 ENV MAMBA_DEFAULT_RUN="micromamba run -n $MAMBA_DEFAULT_ENV"
 
-# Expose the application port
-EXPOSE 8188
+# Expose all the necessary ports
+EXPOSE 22 1111 1122 8188 8888 53682
 
 # Keep init.sh as-is and place additional logic in /opt/ai-dock/bin/preflight.sh
 CMD ["python", "./main.py", "--listen", "0.0.0.0"]
-
