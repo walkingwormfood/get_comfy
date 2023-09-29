@@ -1,3 +1,5 @@
+AI-Dock build of ComfyUI tweaked to be built in AWS Codebuild. This configuration builds a ComfyUI Docker image in ECR. Some assembly required in AWS.
+
 [![Docker Build](https://github.com/ai-dock/comfyui/actions/workflows/docker-build.yml/badge.svg)](https://github.com/ai-dock/comfyui/actions/workflows/docker-build.yml)
 
 # ComfyUI Docker Image
