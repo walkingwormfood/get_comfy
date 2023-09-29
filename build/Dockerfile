@@ -12,7 +12,7 @@ LABEL maintainer="Rob Ballantyne <rob@dynamedia.uk>"
 ENV IMAGE_SLUG="comfyui"
 
 # Copy early so we can use scripts in the build - Changes to these files will invalidate the cache and cause a rebuild.
-COPY .get_comfy/build/COPY_ROOT/ /
+COPY build/COPY_ROOT
 
 # Use build scripts to ensure we can build all targets from one Dockerfile in a single layer.
 # Don't put anything heavy in here - We can use multi-stage building above if necessary.
